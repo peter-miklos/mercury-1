@@ -2,6 +2,7 @@ process.env.NODE_ENV = 'test';
 var app = require('../../app');
 var Browser = require('zombie');
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 Browser.localhost('localhost', 3000);
 
@@ -21,8 +22,8 @@ describe("manage clients", function() {
   })
 
   describe("show client list", function() {
-    beforeEach(function() {
-      browser.visit('/clients');
+    beforeEach(function(done) {
+      browser.visit('/clients', done);
     })
 
     it("informs the user if there is no client in database", function() {
@@ -34,7 +35,7 @@ describe("manage clients", function() {
     })
 
     it("show the list of all clients", function() {
-      browser.assert.text("h1", /List of clients/)
+      browser.assert.text("h2", /List of clients/)
     })
   })
 })
