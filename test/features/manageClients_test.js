@@ -13,7 +13,7 @@ describe("manage clients", function() {
       console.log('collection removed')
     }).then(function() {
       mongoose.model("Client").create({name: "Test User",
-                                       national_ID_number: 123456789,
+                                       national_ID_number: "123456789AB",
                                        birth_date: "1979-11-11",
                                        birth_place: "London"
       })
