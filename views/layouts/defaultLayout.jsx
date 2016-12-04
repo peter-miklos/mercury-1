@@ -6,6 +6,7 @@ class DefaultLayout extends React.Component {
       <html>
         <head>
           <title>{this.props.title}</title>
+          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
           <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
           <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
           <link type="text/css" rel="stylesheet" href="stylesheets/materialize.css"  media="screen,projection"/>
@@ -16,7 +17,6 @@ class DefaultLayout extends React.Component {
           {this.props.children}
           <footer>
           </footer>
-          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
           <script type="text/javascript" src="javascripts/materialize.js"></script>
         </body>
       </html>
