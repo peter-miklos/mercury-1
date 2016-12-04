@@ -1,13 +1,14 @@
 process.env.NODE_ENV = 'test';
+
 var app = require('../../app');
 var Browser = require('zombie');
+var http = require('http');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-Browser.localhost('localhost', 3000);
-
 describe("manage clients", function() {
-  var browser = new Browser();
+  server = http.createServer(app).listen(3000);
+  browser = new Browser({ site: 'http://localhost:3000'});
 
   before(function() {
     mongoose.model("Client").remove({}, function(err) {
@@ -26,16 +27,20 @@ describe("manage clients", function() {
       browser.visit('/clients', done);
     })
 
-    it("informs the user if there is no client in database", function() {
-      mongoose.model("Client").remove({}, function(err) {
-        console.log("collection removed")
-      }).then(function() {
+    describe("no clients showed", function() {
+      beforeEach(function() {
+        mongoose.model("Client").remove({}, function(err) {
+          console.log("collection removed");
+        })
+      })
+
+      xit("informs the user if there is no client in database", function() {
         browser.assert.text("body", /No client found/)
       })
     })
 
     it("show the list of all clients", function() {
-      browser.assert.text("h2", /List of clients/)
+      browser.assert.text("table", /Test User/)
     })
   })
 })

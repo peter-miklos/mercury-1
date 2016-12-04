@@ -1,13 +1,52 @@
 import React from 'react'
 import DefaultLayout from '../layouts/defaultLayout'
 
+class ClientElement extends React.Component {
+  render() {
+    return (
+      <tr>
+        <td>{ this.props.index + 1 }</td>
+        <td>{ this.props.client.name }</td>
+        <td>{ this.props.client.birth_date.toString() }</td>
+        <td>{ this.props.client.birth_place }</td>
+      </tr>
+    )
+  }
+}
+
 class ListOfClients extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { clients: props.clients }
+  }
+
   handleClientList() {
-    console.log("TEST")
-    if (this.props.clients.length === 0)
+    if (this.state.clients.length === 0)
       return "No client found"
     else
-      return "Clients available"
+      return (
+        <table id="clientList" className="highlight">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Date of birth</th>
+              <th>Place of birth</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.handleClientListContent(this.state.clients) }
+          </tbody>
+        </table>
+      )
+  }
+
+  handleClientListContent(clients) {
+    return clients.map((client, index) => React.createElement(ClientElement, {
+      key: client.id,
+      client: client,
+      index: index
+    }))
   }
 
   render() {
