@@ -9,11 +9,15 @@ class SideNav extends React.Component {
             <img src="images/main_image.png" width="300"/>
           </div>
         </div></li>
-      <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
+      <li><a className="waves-effect" href="/"><i className="material-icons">home</i>Home</a></li>
         <li><div className="divider"></div></li>
-        <li><a className="subheader">Subheader</a></li>
-        <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a className="subheader">Clients</a></li>
+        <li><a className="waves-effect" href="/clients">All clients</a></li>
+        <li><a className="waves-effect" href="/clients/new">Add client</a></li>
+        <li><div className="divider"></div></li>
+        <li><a className="subheader">Accounts</a></li>
+        <li><a className="waves-effect" href="/clients">All account</a></li>
+        <li><a className="waves-effect" href="/clients/new">Add account</a></li>
       </ul>
     )
   }
@@ -26,7 +30,7 @@ class Navbar extends React.Component {
         <SideNav />
         <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
         <div className="nav-wrapper container">
-          <a href="#" className="brand-logo">mercury-1</a>
+          <a href="/" className="brand-logo">mercury-1</a>
         </div>
       </nav>
     )
@@ -51,7 +55,9 @@ class DefaultLayout extends React.Component {
             <Navbar />
           </header>
           <main>
-            {this.props.children}
+            <div className="section no-pad-bot">
+              {this.props.children}
+            </div>
           </main>
           <footer>
           </footer>
