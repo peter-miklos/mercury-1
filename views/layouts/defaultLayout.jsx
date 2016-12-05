@@ -37,6 +37,31 @@ class Navbar extends React.Component {
   }
 }
 
+class CustomFooter extends React.Component {
+  render() {
+    return (
+      <footer className="page-footer deep-orange">
+        <div className="container">
+          <div className="row">
+            <div className="col l6 s12">
+              <h5 className="white-text">Footer Content</h5>
+              <p className="grey-text text-lighten-4">Add text here</p>
+            </div>
+            <div className="col l4 offset-l2 s12">
+            </div>
+          </div>
+        </div>
+        <div className="footer-copyright">
+          <div className="container">
+          © 2016 Peter Miklos
+          <a className="grey-text text-lighten-4 right" href="https://github.com/peter-miklos">GitHub</a>
+          </div>
+        </div>
+      </footer>
+    )
+  }
+}
+
 class DefaultLayout extends React.Component {
   render() {
     return (
@@ -59,24 +84,7 @@ class DefaultLayout extends React.Component {
               {this.props.children}
             </div>
           </main>
-          <footer className="page-footer deep-orange">
-            <div className="container">
-              <div className="row">
-                <div className="col l6 s12">
-                  <h5 className="white-text">Footer Content</h5>
-                  <p className="grey-text text-lighten-4">Add text here</p>
-                </div>
-                <div className="col l4 offset-l2 s12">
-                </div>
-              </div>
-            </div>
-            <div className="footer-copyright">
-              <div className="container">
-              © 2016 Peter Miklos
-              <a className="grey-text text-lighten-4 right" href="https://github.com/peter-miklos">GitHub</a>
-              </div>
-            </div>
-          </footer>
+          <CustomFooter />
           <script type="text/javascript" src="javascripts/feScripts.js"></script>
           <script type="text/javascript" src="javascripts/materialize.js"></script>
         </body>
