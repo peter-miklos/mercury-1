@@ -52,7 +52,7 @@ class ListOfClients extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <h2>{this.props.title}</h2>
+        <h4 className="left-align">{this.props.title}</h4>
         <div>{this.handleClientList()}</div>
       </DefaultLayout>
     );
