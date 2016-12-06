@@ -14,10 +14,12 @@ describe("manage clients", function() {
     mongoose.model("Client").remove({}, function(err) {
       console.log('collection removed')
     }).then(function() {
-      mongoose.model("Client").create({name: "Test Client",
+      mongoose.model("Client").create({first_name: "Test",
+                                       last_name: "Client",
                                        national_ID_number: "123456789AB",
                                        birth_date: "1979-11-11",
-                                       birth_place: "London"
+                                       birth_place: "London",
+                                       email: "test1@test.com"
       })
     })
   })
@@ -53,10 +55,12 @@ describe("manage clients", function() {
 
     beforeEach(function(done) {
       browser
-        .fill('name', 'New Client')
+        .fill('first_name', 'New')
+        .fill('last_name', 'Client')
         .fill('national_ID_number', '987654321CC')
         .fill('birth_date', '1982-03-09')
-        .fill('birth_place', 'Budapest, Hungary', done);
+        .fill('birth_place', 'Budapest, Hungary')
+        .fill('email', 'test2@test.com')
     })
 
     it("should be successfull", function() {
