@@ -18,35 +18,35 @@ class FormContent extends React.Component {
         <form className="col s12" method="post" action="/clients/create">
           <div className="row">
             <div className="input-field col s12 m6">
-              <input id="first_name" type="text" className="validate" />
+              <input id="first_name" name="first_name" type="text" className="validate" />
               <label for="first_name">First Name</label>
             </div>
             <div className="input-field col s12 m6">
-              <input id="last_name" type="text" className="validate" />
+              <input id="last_name" name="last_name" type="text" className="validate" />
               <label for="last_name">Last Name</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12 m6">
-              <input id="birth_date" type="date" className="datepicker" />
+              <input id="birth_date" name="birth_date" type="date" className="datepicker" />
               <label for="birth_date">Date of birth</label>
             </div>
             <div className="input-field col s12 m6">
-              <input id="birth_place" type="password" className="validate" />
-              <label for="password">Place of birth</label>
+              <input id="birth_place" name="birth_place" type="text" className="validate" />
+              <label for="birth_place">Place of birth</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="national_ID_number" type="text" className="validate" />
-              <label for="national_ID_number">National ID number</label>
+              <input id="national_id_number" name="national_id_number" type="text" className="validate" />
+              <label for="national_id_number">National ID number</label>
             </div>
           </div>
           <div className="row">
             <div className="col s12">
               Contact information:
               <div className="input-field inline">
-                <input id="email" type="email" className="validate" />
+                <input id="email" name="email" type="email" className="validate" />
                 <label for="email" data-error="wrong" data-success="right">Email</label>
               </div>
             </div>

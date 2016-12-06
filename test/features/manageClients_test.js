@@ -16,7 +16,7 @@ describe("manage clients", function() {
     }).then(function() {
       mongoose.model("Client").create({first_name: "Test",
                                        last_name: "Client",
-                                       national_ID_number: "123456789AB",
+                                       national_id_number: "123456789AB",
                                        birth_date: "1979-11-11",
                                        birth_place: "London",
                                        email: "test1@test.com"
@@ -57,10 +57,10 @@ describe("manage clients", function() {
       browser
         .fill('first_name', 'New')
         .fill('last_name', 'Client')
-        .fill('national_ID_number', '987654321CC')
+        .fill('national_id_number', '987654321CC')
         .fill('birth_date', '1982-03-09')
         .fill('birth_place', 'Budapest, Hungary')
-        .fill('email', 'test2@test.com')
+        .fill('email', 'test2@test.com', done);
     })
 
     it("should be successfull", function() {
