@@ -54,13 +54,13 @@ describe("manage clients", function() {
     })
 
     beforeEach(function(done) {
-      browser
-        .fill('first_name', 'New')
-        .fill('last_name', 'Client')
-        .fill('national_id_number', '987654321CC')
-        .fill('birth_date', '1982-03-09')
-        .fill('birth_place', 'Budapest, Hungary')
-        .fill('email', 'test2@test.com', done);
+      browser.fill('first_name', 'New', done)
+      browser.fill('last_name', 'Client', done)
+      browser.fill('national_id_number', '987654321CC', done)
+      browser.fill('birth_date', '1982-03-09', done)
+      browser.fill('birth_place', 'Budapest, Hungary', done)
+      browser.fill('email', 'test2@test.com', done)
+      browser.pressButton("Submit", done)
     })
 
     it("should be successfull", function() {
@@ -72,11 +72,11 @@ describe("manage clients", function() {
     })
 
     it("shows the client's date of birth in the client list", function() {
-      browser.assert.text("table", /09-03-1982/)
+      browser.assert.text("table", /9\/3\/1982/)
     })
 
     it("shows the client's place of birth in the client list", function() {
-      browsert.assert.text("table", /Budapest, Hungary/)
+      browser.assert.text("table", /Budapest, Hungary/)
     })
 
   })

@@ -4,8 +4,12 @@ $(document).ready(function() {
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
   //$('.collapsible').collapsible();
 
-  $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
+  if (document.getElementsByClassName("datepicker").length != 0) {
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 100, // Creates a dropdown of 15 years to control year
+      min: -(365 * 100),
+      max: -(365 * 18)
+    });
+  }
 })
