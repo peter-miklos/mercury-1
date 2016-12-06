@@ -6,6 +6,13 @@ var express = require('express');
 
 router.get('/', function(req, res, next) {
   Client.find({}, function(err, clients) {
+    clients = clients.sort(function(a, b) {
+      var nameA = `${a.last_name} ${a.first_name}`;
+      var nameB = `${b.last_name} ${b.first_name}`;
+      if (nameA < nameB) { return -1; }
+      if (nameA > nameB) { return 1; }
+      return 0;
+    })
     res.render('clients/index', { title: "List of clients", clients: clients });
   })
 });
