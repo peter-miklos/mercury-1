@@ -13,14 +13,6 @@ describe("manage clients", function() {
   before(function() {
     mongoose.model("Client").remove({}, function(err) {
       console.log('collection removed')
-    }).then(function() {
-      mongoose.model("Client").create({first_name: "Test",
-                                       last_name: "Client",
-                                       national_id_number: "123456789AB",
-                                       birth_date: "1979-11-11",
-                                       birth_place: "London",
-                                       email: "test1@test.com"
-      })
     })
   })
 
@@ -30,37 +22,44 @@ describe("manage clients", function() {
     })
 
     describe("no clients showed", function() {
-      beforeEach(function() {
-        mongoose.model("Client").remove({}, function(err) {
-          console.log("collection removed");
-        })
-      })
 
-      xit("informs the user if there is no client in database", function() {
+      it("informs the user if there is no client in database", function() {
         browser.assert.text("body", /No client found/)
       })
     })
 
-    it("show the list of all clients", function() {
-      browser.assert.text("table", /Test Client/)
+    describe("show available clients", function() {
+
+      beforeEach(function(done) {
+        mongoose.model("Client").create({first_name: "Test",
+                                         last_name: "Client",
+                                         national_id_number: "123456789AB",
+                                         birth_date: "1979-11-11",
+                                         birth_place: "London",
+                                         email: "test1@test.com"
+        }).then(function() { browser.visit("/clients", done) })
+      })
+
+      it("show the list of all clients", function() {
+        browser.assert.text("table", /Test Client/)
+      })
     })
   })
 
   describe("add client", function() {
     beforeEach(function(done) {
       browser.visit('/').then(function() {
-        browser.clickLink("Add client", done);
+        browser.clickLink("Add client").then(function() {
+          browser
+          .fill('first_name', 'New')
+          .fill('last_name', 'Client')
+          .fill('national_id_number', '987654321CC')
+          .fill('birth_date', '1982-03-09')
+          .fill('birth_place', 'Budapest, Hungary')
+          .fill('email', 'test2@test.com')
+          .pressButton("Submit", done);
+        })
       })
-    })
-
-    beforeEach(function(done) {
-      browser.fill('first_name', 'New', done)
-      browser.fill('last_name', 'Client', done)
-      browser.fill('national_id_number', '987654321CC', done)
-      browser.fill('birth_date', '1982-03-09', done)
-      browser.fill('birth_place', 'Budapest, Hungary', done)
-      browser.fill('email', 'test2@test.com', done)
-      browser.pressButton("Submit", done)
     })
 
     it("should be successfull", function() {
