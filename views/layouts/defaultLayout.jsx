@@ -6,7 +6,7 @@ class SideNav extends React.Component {
       <ul id="slide-out" className="side-nav fixed">
         <li><div className="userView mainImage">
           <div className="background" >
-            <img src="images/main_image.png" width="300"/>
+            <img src="/images/main_image.png" width="300"/>
           </div>
         </div></li>
       <li><a className="waves-effect" href="/"><i className="material-icons">home</i>Home</a></li>
@@ -45,7 +45,7 @@ class CustomHead extends React.Component {
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link type="text/css" rel="stylesheet" href="stylesheets/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="/stylesheets/materialize.css"  media="screen,projection"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       </head>
@@ -93,8 +93,8 @@ class DefaultLayout extends React.Component {
             </div>
           </main>
           <CustomFooter />
-          <script type="text/javascript" src="javascripts/feScripts.js"></script>
-          <script type="text/javascript" src="javascripts/materialize.js"></script>
+          <script type="text/javascript" src="/javascripts/feScripts.js" />
+          <script type="text/javascript" src="/javascripts/materialize.js" />
         </body>
       </html>
     )
