@@ -10,4 +10,8 @@ var clientSchema = mongoose.Schema({
   update: {type: Date, default: Date.now}
 })
 
+clientSchema.statics.getAllClientsInSortedList = function(cb) {
+  return this.find({}, cb).sort('last_name + first_name');
+}
+
 mongoose.model('Client', clientSchema);
