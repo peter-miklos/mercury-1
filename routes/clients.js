@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next) {
-  res.render('clients/new', {title: "Add client"})
-})
+  res.render('clients/new', {title: "Add client"});
+});
 
 module.exports = router;
