@@ -1,9 +1,10 @@
 import React from 'react'
 import DefaultLayout from '../layouts/defaultLayout';
+import DefaultNameFormat from '../layouts/defaultNameFormat';
 
 class AccountElement extends React.Component {
   render() {
-    let name = this.props.client ? `${this.props.client.first_name} ${this.props.client.last_name}` : "N/A"
+    let name = this.props.client ? <DefaultNameFormat fn={this.props.client.first_name} ln={this.props.client.last_name}/> : "N/A"
     return (
       <tr>
         <td>{ this.props.index + 1 }</td>

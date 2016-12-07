@@ -1,14 +1,16 @@
 import React from 'react'
 import DefaultLayout from '../layouts/defaultLayout';
 import DefaultDateFormat from '../layouts/defaultDateFormat';
+import DefaultNameFormat from '../layouts/defaultNameFormat';
 
 class ClientElement extends React.Component {
   render() {
-    let name = `${this.props.client.first_name} ${this.props.client.last_name}`
     return (
       <tr>
         <td>{ this.props.index + 1 }</td>
-        <td><a href={ `/clients/${this.props.client._id}` }>{ name }</a></td>
+        <td><a href={ `/clients/${this.props.client._id}` }>
+          <DefaultNameFormat fn={this.props.client.first_name} ln={this.props.client.last_name}/>
+        </a></td>
         <td><DefaultDateFormat date={this.props.client.birth_date} /></td>
         <td>{ this.props.client.birth_place }</td>
       </tr>
