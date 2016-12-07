@@ -16,8 +16,8 @@ class SideNav extends React.Component {
         <li><a className="waves-effect" href="/clients/new">Add client</a></li>
         <li><div className="divider"></div></li>
         <li><a className="subheader">Accounts</a></li>
-        <li><a className="waves-effect" href="/clients">All account</a></li>
-        <li><a className="waves-effect" href="/clients/new">Add account</a></li>
+        <li><a className="waves-effect" href="/accounts">All accounts</a></li>
+        <li><a className="waves-effect" href="/accounts/new">Add account</a></li>
       </ul>
     )
   }
