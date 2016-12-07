@@ -33,10 +33,13 @@ router.post('/create', function(req, res, next) {
   res.redirect("/clients");
 })
 
-router.get('/clients/:id', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
   Client.findOne({_id: req.params.id}, function(err, client) {
     if (err) { console.log(err) }
-    else { res.render('clients/show', {title: `Client: ${client.first_name} ${client.last_name}`, client: client})}
+    else {
+      let title = `Client: ${client.first_name} ${client.last_name}`
+      res.render('clients/show', {title: title, client: client})
+    }
   })
 })
 

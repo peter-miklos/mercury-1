@@ -88,8 +88,9 @@ describe("manage clients", function() {
                                        birth_place: "London",
                                        email: "test1@test.com"
       }).then(function() {
-        browser.visit("/clients", done);
-        browser.clickLink("Test Client", done);
+        browser.visit("/clients").then(function() {
+          browser.clickLink("Test Client", done);
+        })
       })
     })
 
