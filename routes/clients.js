@@ -5,7 +5,7 @@ var express = require('express');
     Client = mongoose.model('Client')
 
 router.get('/', function(req, res, next) {
-  Client.find({}, function(err, clients) {
+  Client.getAllClientsInSortedList(function(err, clients) {
     res.render('clients/index', { title: "List of clients", clients: clients });
   })
 });
@@ -23,14 +23,24 @@ router.post('/create', function(req, res, next) {
                  email: req.body.email ? req.body.email : ""
   }, function(err, client) {
     if (err) {
-      console.log(err)
       console.log("Problem occured during db save")
+      console.log(err)
     }
     else {
       console.log("New client has been successfully saved in db")
     }
   });
   res.redirect("/clients");
+})
+
+router.get('/:id', function(req, res, next) {
+  Client.findOne({_id: req.params.id}, function(err, client) {
+    if (err) { console.log(err) }
+    else {
+      let title = `Client: ${client.first_name} ${client.last_name}`
+      res.render('clients/show', {title: title, client: client})
+    }
+  })
 })
 
 module.exports = router;
