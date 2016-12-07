@@ -23,14 +23,21 @@ router.post('/create', function(req, res, next) {
                  email: req.body.email ? req.body.email : ""
   }, function(err, client) {
     if (err) {
-      console.log(err)
       console.log("Problem occured during db save")
+      console.log(err)
     }
     else {
       console.log("New client has been successfully saved in db")
     }
   });
   res.redirect("/clients");
+})
+
+router.get('/clients/:id', function(req, res, next) {
+  Client.findOne({_id: req.params.id}, function(err, client) {
+    if (err) { console.log(err) }
+    else { res.render('clients/show', {title: `Client: ${client.first_name} ${client.last_name}`, client: client})}
+  })
 })
 
 module.exports = router;

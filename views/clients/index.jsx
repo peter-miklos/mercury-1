@@ -4,10 +4,11 @@ import DefaultLayout from '../layouts/defaultLayout'
 class ClientElement extends React.Component {
   render() {
     let date = this.props.client.birth_date;
+    let name = `${this.props.client.first_name} ${this.props.client.last_name}`
     return (
       <tr>
         <td>{ this.props.index + 1 }</td>
-        <td>{ `${this.props.client.first_name} ${this.props.client.last_name}` }</td>
+        <td><a href={ `/clients/${this.props.client._id}` }>{ name }</a></td>
         <td>{ `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` }</td>
         <td>{ this.props.client.birth_place }</td>
       </tr>
