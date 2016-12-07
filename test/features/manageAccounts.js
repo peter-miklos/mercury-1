@@ -55,7 +55,7 @@ describe("manage accounts", function() {
         browser.assert.success();
       })
 
-      it("shows the list of accounts", function() {
+      xit("shows the list of accounts", function() {
         browser.assert.text("table", /Test Client/);
         browser.assert.text("table", /GBP/)
       })

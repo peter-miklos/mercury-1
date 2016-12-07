@@ -3,10 +3,11 @@ import DefaultLayout from '../layouts/defaultLayout';
 
 class AccountElement extends React.Component {
   render() {
+    let name = this.props.client ? `${this.props.client.first_name} ${this.props.client.last_name}` : "N/A"
     return (
       <tr>
         <td>{ this.props.index + 1 }</td>
-        <td>TBD</td>
+        <td>{ name }</td>
         <td>TBD</td>
         <td>{ this.props.account.currency }</td>
       </tr>
@@ -46,8 +47,13 @@ class ListOfAccounts extends React.Component {
     return accounts.map((account, index) => React.createElement(AccountElement, {
       key: account._id,
       account: account,
+      client: this.findClient(account),
       index: index
     }))
+  }
+
+  findClient(account) {
+    return this.props.clients.find(client => client._id === account._owner)
   }
 
   render() {
