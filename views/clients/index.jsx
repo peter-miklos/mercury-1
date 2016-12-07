@@ -45,7 +45,7 @@ class ListOfClients extends React.Component {
 
   handleClientListContent(clients) {
     return clients.map((client, index) => React.createElement(ClientElement, {
-      key: client.id,
+      key: client._id,
       client: client,
       index: index
     }))

@@ -4,10 +4,10 @@ var app = require('../../app');
     Browser = require('zombie');
     http = require('http');
     mongoose = require('mongoose');
+    server = http.createServer(app).listen(3000);
 mongoose.Promise = require('bluebird');
 
 describe("manage accounts", function() {
-  var server = http.createServer(app).listen(3000);
   var browser = new Browser({ site: 'http://localhost:3000'});
 
   before(function() {
@@ -62,3 +62,5 @@ describe("manage accounts", function() {
     })
   })
 })
+
+server.close();
