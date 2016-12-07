@@ -77,6 +77,33 @@ describe("manage clients", function() {
     it("shows the client's place of birth in the client list", function() {
       browser.assert.text("table", /Budapest, Hungary/)
     })
+  })
 
+  describe("show client details", function() {
+    beforeEach(function(done) {
+      mongoose.model("Client").create({first_name: "Test",
+                                       last_name: "Client",
+                                       national_id_number: "123456789AB",
+                                       birth_date: "1979-11-11",
+                                       birth_place: "London",
+                                       email: "test1@test.com"
+      }).then(function() {
+        browser.visit("/clients", done);
+        browser.clickLink("Test Client", done);
+      })
+    })
+
+    it("should be successfull", function() {
+      browser.assert.success();
+    })
+
+    it("shows the client details", function() {
+      browser.assert.text("div#client_data", /Test/);
+      browser.assert.text("div#client_data", /Client/);
+      browser.assert.text("div#client_data", /123456789AB/);
+      browser.assert.text("div#client_data", /11\/11\/1979/);
+      browser.assert.text("div#client_data", /London/);
+      browser.assert.text("div#client_data", /test1@test.com/);
+    })
   })
 })
