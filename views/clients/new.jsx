@@ -11,7 +11,7 @@ class NewClientHeader extends React.Component {
   }
 }
 
-class FormContent extends React.Component {
+class NewClientFormContent extends React.Component {
   render() {
     return (
       <div className="row">
@@ -63,7 +63,7 @@ class NewClient extends React.Component {
     return (
       <DefaultLayout title={this.props.title}>
         <NewClientHeader title={this.props.title}/>
-        <FormContent />
+        <NewClientFormContent />
       </DefaultLayout>
     );
   }

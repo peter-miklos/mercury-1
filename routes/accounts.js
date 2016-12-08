@@ -7,17 +7,29 @@ var express = require('express');
     Client = mongoose.model('Client');
 
 router.get('/', function(req, res, next) {
-  Account.find({}, function(accErr, accounts) {
-    if(accErr) {return handleError(accErr);}
-    else {
-      Client.find({}, '_id first_name last_name', function(clientErr, clients) {
-        if(clientErr) {return handleError(clientErr);}
-        else {
-          res.render('accounts/index', {title: "List of accounts", accounts: accounts, clients: clients});
-        }
-      })
-    }
+  Account.find({}).populate('_owner').exec(function(err, accounts) {
+    if(err) {return handleError(err);}
+    else {res.render('accounts/index', {title: "List of accounts", accounts: accounts});}
   })
 });
+
+router.get('/new', function(req, res, next) {
+  Client.getAllClientsInSortedList(function(err, clients) {
+    if (err) {return handleError(err)}
+    else { res.render('accounts/new', {title: "Add an account", clients: clients}); }
+  })
+})
+
+router.post("/create", function(req, res, next) {
+  Account.create({currency: req.body.ccySelection,
+                  _owner: req.body.clientSelection
+  }, function(accErr, account) {
+    if (accErr) {console.log(accErr)}
+    else {
+      console.log("New account has been successfully created")
+      res.redirect('/accounts');
+    }
+  })
+})
 
 module.exports = router;

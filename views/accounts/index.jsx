@@ -4,11 +4,12 @@ import DefaultNameFormat from '../layouts/defaultNameFormat';
 
 class AccountElement extends React.Component {
   render() {
-    let name = this.props.client ? <DefaultNameFormat fn={this.props.client.first_name} ln={this.props.client.last_name}/> : "N/A"
+    let first_name = this.props.account._owner.first_name;
+    let last_name = this.props.account._owner.last_name;
     return (
       <tr>
         <td>{ this.props.index + 1 }</td>
-        <td>{ name }</td>
+        <td><DefaultNameFormat fn={first_name} ln={last_name}/></td>
         <td>TBD</td>
         <td>{ this.props.account.currency }</td>
       </tr>
@@ -48,13 +49,8 @@ class ListOfAccounts extends React.Component {
     return accounts.map((account, index) => React.createElement(AccountElement, {
       key: account._id,
       account: account,
-      client: this.findClient(account),
       index: index
     }))
-  }
-
-  findClient(account) {
-    return this.props.clients.find(client => client._id === account._owner)
   }
 
   render() {

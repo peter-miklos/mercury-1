@@ -61,6 +61,29 @@ describe("manage accounts", function() {
       })
     })
   })
+
+  describe("add client", function() {
+    beforeEach(function(done) {
+      browser.clickLink("Add account").then(function() {
+        browser
+        .select('clientSelection', 'Test Client (birth date: 11/11/1979, National ID nr: 123456789AB)')
+        .select('ccySelection', "EUR")
+        .pressButton("Submit", done);
+      })
+    })
+
+    it("should be successfull", function() {
+      browser.assert.success();
+    })
+
+    it("shows the client's name in the account list", function() {
+      browser.assert.text("table", /Test Client/)
+    })
+
+    it("shows the currency in the account list", function() {
+      browser.assert.text("table", /EUR/)
+    })
+  })
 })
 
 server.close();
