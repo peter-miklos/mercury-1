@@ -19,7 +19,7 @@ class ClientSelectionElement extends React.Component {
     let date = this.props.client.birth_date
     let birth_date = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
     return (
-      <option value={this.props.client._id}>{`${name} (birth date: ${birth_date})`}</option>
+      <option value={this.props.client._id}>{`${name} (birth date: ${birth_date}, National ID nr: ${this.props.client.national_id_number})`}</option>
     )
   }
 }
@@ -38,7 +38,7 @@ class NewAccountFormContent extends React.Component {
         <form className="col s12" method="post" action="/accounts/create">
           <div className="row">
             <div className="input-field col s12">
-              <select id="clientSelection" name="clientSelection">
+              <select id="clientSelection" name="clientSelection" required>
                 <option value="" disabled selected>Choose a client</option>
                 { this.handleClientSelectionContent(this.props.clients) }
               </select>
@@ -47,7 +47,7 @@ class NewAccountFormContent extends React.Component {
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <select id="ccySelection" name="ccySelection">
+              <select id="ccySelection" name="ccySelection" required>
                 <option value="" disabled selected>Choose a currency</option>
                 <option value="CHF">CHF</option>
                 <option value="CZK">CZK</option>

@@ -66,7 +66,7 @@ describe("manage accounts", function() {
     beforeEach(function(done) {
       browser.clickLink("Add account").then(function() {
         browser
-        .select('clientSelection', 'Test Client (birth date: 11/11/1979)')
+        .select('clientSelection', 'Test Client (birth date: 11/11/1979, National ID nr: 123456789AB)')
         .select('ccySelection', "EUR")
         .pressButton("Submit", done);
       })

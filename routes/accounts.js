@@ -21,8 +21,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next) {
-  Client.find({}, '_id first_name last_name birth_date', function(err, clients) {
-    if(err) {return handleError(err)}
+  Client.getAllClientsInSortedList(function(err, clients) {
+    if (err) {return handleError(err)}
     else { res.render('accounts/new', {title: "Add an account", clients: clients}); }
   })
 })
