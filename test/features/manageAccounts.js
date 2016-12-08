@@ -65,11 +65,10 @@ describe("manage accounts", function() {
   describe("add client", function() {
     beforeEach(function(done) {
       browser.clickLink("Add account").then(function() {
-        browser.fill('select', 'Test Client').then(function() {
-          browser
-          .fill('currency', "EUR")
-          .pressButton("Submit", done);
-        })
+        browser
+        .select('clientSelection', 'Test Client (birth date: 11/11/1979)')
+        .select('ccySelection', "EUR")
+        .pressButton("Submit", done);
       })
     })
 

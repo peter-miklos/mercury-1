@@ -12,4 +12,6 @@ $(document).ready(function() {
       max: -(365 * 18)
     });
   }
+
+  $('select').material_select();
 })
