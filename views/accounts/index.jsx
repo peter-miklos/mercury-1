@@ -1,18 +1,23 @@
 import React from 'react'
 import DefaultLayout from '../layouts/defaultLayout';
 import DefaultNameFormat from '../layouts/defaultNameFormat';
+import DefaultDateFormat from '../layouts/defaultDateFormat';
 
 class AccountElement extends React.Component {
   render() {
     let first_name = this.props.account._owner.first_name;
     let last_name = this.props.account._owner.last_name;
     return (
-      <tr>
-        <td>{ this.props.index + 1 }</td>
-        <td><DefaultNameFormat fn={first_name} ln={last_name}/></td>
-        <td>TBD</td>
-        <td>{ this.props.account.currency }</td>
-      </tr>
+      <li>
+        <div className="collapsible-header"><DefaultNameFormat fn={first_name} ln={last_name}/> ({this.props.account.currency})</div>
+        <div className="collapsible-body">
+          <p><b>Account number: TBD</b><br/>
+          <b>Client data:</b><br/>
+          National ID number: { this.props.account._owner.national_id_number }<br/>
+          Place of birth: {this.props.account._owner.birth_place}<br/>
+          Date of birth: <DefaultDateFormat date={this.props.account._owner.birth_date}/></p>
+        </div>
+      </li>
     )
   }
 }
@@ -28,19 +33,9 @@ class ListOfAccounts extends React.Component {
       return "No account found"
     else {
       return (
-        <table id="accountList" className="highlight">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Client name</th>
-              <th>Account nr</th>
-              <th>Currency</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.handleAccountListContent(this.state.accounts)}
-          </tbody>
-        </table>
+        <ul className="collapsible" data-collapsible="expandable">
+          { this.handleAccountListContent(this.state.accounts)}
+        </ul>
       )
     }
   }
@@ -56,8 +51,10 @@ class ListOfAccounts extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <h4 className="left-align">{this.props.title}</h4>
-        <div>{this.handleClientList()}</div>
+        <div className="container">
+          <h4 className="left-align">{this.props.title}</h4>
+          {this.handleClientList()}
+        </div>
       </DefaultLayout>
     )
   }

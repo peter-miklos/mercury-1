@@ -77,11 +77,11 @@ describe("manage accounts", function() {
     })
 
     it("shows the client's name in the account list", function() {
-      browser.assert.text("table", /Test Client/)
+      browser.assert.text("li", /Test Client/)
     })
 
     it("shows the currency in the account list", function() {
-      browser.assert.text("table", /EUR/)
+      browser.assert.text("li", /EUR/)
     })
   })
 })
