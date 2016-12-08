@@ -8,14 +8,14 @@ var express = require('express');
 
 router.get('/', function(req, res, next) {
   Account.find({}).populate('_owner').exec(function(err, accounts) {
-    if(err) {return handleError(err);}
+    if(err) {return next(err);}
     else {res.render('accounts/index', {title: "List of accounts", accounts: accounts});}
   })
 });
 
 router.get('/new', function(req, res, next) {
   Client.getAllClientsInSortedList(function(err, clients) {
-    if (err) {return handleError(err)}
+    if (err) {return next(err)}
     else { res.render('accounts/new', {title: "Add an account", clients: clients}); }
   })
 })
@@ -23,8 +23,8 @@ router.get('/new', function(req, res, next) {
 router.post("/create", function(req, res, next) {
   Account.create({currency: req.body.ccySelection,
                   _owner: req.body.clientSelection
-  }, function(accErr, account) {
-    if (accErr) {console.log(accErr)}
+  }, function(err, account) {
+    if (err) {return next(err)}
     else {
       console.log("New account has been successfully created")
       res.redirect('/accounts');

@@ -11,7 +11,8 @@ class AccountElement extends React.Component {
       <li>
         <div className="collapsible-header"><DefaultNameFormat fn={first_name} ln={last_name}/> ({this.props.account.currency})</div>
         <div className="collapsible-body">
-          <p><b>Client data:</b><br/>
+          <p><b>Account number: TBD</b><br/>
+          <b>Client data:</b><br/>
           National ID number: { this.props.account._owner.national_id_number }<br/>
           Place of birth: {this.props.account._owner.birth_place}<br/>
           Date of birth: <DefaultDateFormat date={this.props.account._owner.birth_date}/></p>
