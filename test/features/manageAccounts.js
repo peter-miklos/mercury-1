@@ -61,6 +61,30 @@ describe("manage accounts", function() {
       })
     })
   })
+
+  describe("add client", function() {
+    beforeEach(function(done) {
+      browser.clickLink("Add account").then(function() {
+        browser.fill('select', 'Test Client').then(function() {
+          browser
+          .fill('currency', "EUR")
+          .pressButton("Submit", done);
+        })
+      })
+    })
+
+    it("should be successfull", function() {
+      browser.assert.success();
+    })
+
+    it("shows the client's name in the account list", function() {
+      browser.assert.text("table", /Test Client/)
+    })
+
+    it("shows the currency in the account list", function() {
+      browser.assert.text("table", /EUR/)
+    })
+  })
 })
 
 server.close();
