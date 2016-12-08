@@ -6,7 +6,8 @@ var express = require('express');
 
 router.get('/', function(req, res, next) {
   Client.getAllClientsInSortedList(function(err, clients) {
-    res.render('clients/index', { title: "List of clients", clients: clients });
+    if (err) {return next(err)}
+    else {res.render('clients/index', { title: "List of clients", clients: clients });}
   })
 });
 
@@ -22,20 +23,17 @@ router.post('/create', function(req, res, next) {
                  birth_place: req.body.birth_place,
                  email: req.body.email ? req.body.email : ""
   }, function(err, client) {
-    if (err) {
-      console.log("Problem occured during db save")
-      console.log(err)
-    }
+    if (err) { return next(err) }
     else {
-      console.log("New client has been successfully saved in db")
+      console.log("New client has been successfully saved in db");
+      res.redirect("/clients");
     }
   });
-  res.redirect("/clients");
 })
 
 router.get('/:id', function(req, res, next) {
   Client.findOne({_id: req.params.id}, function(err, client) {
-    if (err) { console.log(err) }
+    if (err) { return next(err) }
     else {
       let title = `Client: ${client.first_name} ${client.last_name}`
       res.render('clients/show', {title: title, client: client})
